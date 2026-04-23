@@ -35,28 +35,7 @@ class Triangle {
 
   @override
   String toString() {
-
-    if(measurementSystem == MeasurementSystem.mm) {
-      return 'Dreieck ($measurementSystem): H=${heightInMm}mm, B=${widthInMm}mm';
-    }
-    else if(measurementSystem == MeasurementSystem.cm) {
-      return 'Dreieck ($measurementSystem): H=${heightInMm}cm, B=${widthInMm}cm';
-    }
-    else if(measurementSystem == MeasurementSystem.dm) {
-      return 'Dreieck ($measurementSystem): H=${heightInMm}dm, B=${widthInMm}dm';
-    }
-    else if(measurementSystem == MeasurementSystem.m) {
-      return 'Dreieck ($measurementSystem): H=${heightInMm}m, B=${widthInMm}m';
-    }
-    else if(measurementSystem == MeasurementSystem.inch) {
-      return 'Dreieck ($measurementSystem): H=${heightInMm}inch, B=${widthInMm} inch';
-    }
-    else if(measurementSystem == MeasurementSystem.feet) {
-      return 'Dreieck ($measurementSystem): H=${heightInMm}feet, B=${widthInMm} feet';
-    }
-    else {
-      return '';
-    }
+    return 'Dreieck ${measurementSystem.ausgeschriebeneEinheiten()}: H=${heightInMm}$measurementSystem, B=${widthInMm}$measurementSystem';
   }
 }
 
@@ -66,6 +45,29 @@ enum MeasurementSystem {
   dm, 
   m,
   inch,
-  feet
+  feet;
+
+  @override
+  String toString() {
+    switch(this){
+      case MeasurementSystem.mm: return "mm";
+      case MeasurementSystem.cm: return "cm";
+      case MeasurementSystem.dm: return "dm";
+      case MeasurementSystem.m: return "m";
+      case MeasurementSystem.inch: return "inch";
+      case MeasurementSystem.feet: return "feet";
+    }
+  }
+
+  String ausgeschriebeneEinheiten() {
+    switch(this){
+      case MeasurementSystem.mm: return "in Millimeter";
+      case MeasurementSystem.cm: return "in Zentimeter";
+      case MeasurementSystem.dm: return "in Dezimeter";
+      case MeasurementSystem.m: return "in Meter";
+      case MeasurementSystem.inch: return "in Zoll";
+      case MeasurementSystem.feet: return "in Fuß";
+    }
+  }
 }
 
